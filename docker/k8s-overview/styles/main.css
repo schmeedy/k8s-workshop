@@ -1,0 +1,37 @@
+body {
+
+}
+
+.container {
+    margin-bottom: 50px;
+}
+
+.namespace-filter {
+    margin-bottom: 15px;
+}
+
+.pod {
+    height: auto !important;
+    transition: background-color 1000ms ease;
+}
+
+.pod.new {
+    background-color: #bbf5bb !important;
+}
+
+.pod.removed {
+    background-color: #f5bbbb !important;
+}
+
+.pod-info {
+    line-height: 30px;
+}
+
+.pod-icon {
+    max-width: 60px;
+    height: 60px;
+}
+
+.faded {
+    color: #999
+}
