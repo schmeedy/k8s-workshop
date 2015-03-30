@@ -1,0 +1,13 @@
+{
+  "name": "js-appserver",
+  "version": "0.0.1",
+  "description": "Simple server for serving js apps (proxying single backend).",
+  "main": "index.js",
+  "author": "Martin Schmied",
+  "license": "MIT",
+  "dependencies": {
+    "connect": "^3.3.5",
+    "serve-static": "^1.9.2",
+    "proxy-middleware": "^0.11.0"
+  }
+}
