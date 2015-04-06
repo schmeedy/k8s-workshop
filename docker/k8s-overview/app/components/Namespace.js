@@ -9,6 +9,7 @@ module.exports = React.createClass({
 
     render: function() {
         var ns = this.props.namespace;
+        var nsApiResource = '/api/v1beta3/namespaces/' + ns.metadata.name;
         var panelBody;
         if (ns.pods.length > 0) {
             panelBody = <PodList pods={ns.pods} key={ns.metadata.id} />;
@@ -20,7 +21,7 @@ module.exports = React.createClass({
             <div>
                 <div className="panel panel-default bootcards-summary">
                     <div className="panel-heading">
-                        <h3 className="panel-title">{ns.metadata.name}</h3>
+                        <h3 className="panel-title"><a target="_blank" href={nsApiResource}>{ns.metadata.name}</a></h3>
                     </div>
                     <div className="panel-body">
                         {panelBody}

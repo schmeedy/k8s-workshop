@@ -35,3 +35,7 @@ body {
 .faded {
     color: #999
 }
+
+.faded a {
+    color: #999
+}

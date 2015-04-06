@@ -22,11 +22,15 @@ module.exports = React.createClass({
     render: function() {
         var pod = this.props.pod;
         var podClasses = 'bootcards-summary-item pod' + (pod.flag ? ' ' + pod.flag : '');
+        var podApiResource = '/api/v1beta3/namespaces/' + pod.metadata.namespace + '/pods/' + pod.metadata.name;
+        var hostApiResource = '/api/v1beta3/nodes/' + pod.status.host;
 
         return (
             <div className='col-xs-6 col-sm-4 pod-container'>
                 <div className={podClasses}>
-                    <div className='pod-info'>{pod.metadata.name} <span className='faded'>@ {this.formatHost(pod.status.host)}</span></div>
+                    <div className='pod-info'>
+                        <a target="_blank" href={podApiResource}>{pod.metadata.name}</a>
+                        <span className='faded'> @ <a target="_blank" href={hostApiResource}>{this.formatHost(pod.status.host)}</a></span></div>
                     <ContainerList containers={pod.spec.containers} />
                     {this.renderIcon(pod)}
                 </div>
