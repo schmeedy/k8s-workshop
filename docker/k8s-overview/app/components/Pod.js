@@ -4,7 +4,8 @@ var ContainerList = require('./ContainerList.js');
 
 module.exports = React.createClass({
     propTypes: {
-        pod: React.PropTypes.object.isRequired
+        pod: React.PropTypes.object.isRequired,
+        providedServices: React.PropTypes.array
     },
 
     formatHost: function(host) {
@@ -16,6 +17,17 @@ module.exports = React.createClass({
         if (pod.metadata.labels.icon) {
             var iconSrc = pod.icon || 'http://phette23.github.io/speed-is-a-feature/img/loadingBar.gif';
             return (<img className='pod-icon' src={iconSrc} />);
+        }
+    },
+
+    renderProvidedService: function(service) {
+        var apiEndpoint = '/api/v1beta3/namespaces/' + service.metadata.namespace + '/services/' + service.metadata.name;
+        return <span key={service.metadata.name}><a target="_blank" href={apiEndpoint}>{service.metadata.name}</a> </span>
+    },
+
+    renderProvidedServices: function() {
+        if (this.props.providedServices.length > 0) {
+            return <div>provides: { this.props.providedServices.map(this.renderProvidedService) }</div>
         }
     },
 
@@ -33,6 +45,7 @@ module.exports = React.createClass({
                         <span className='faded'> @ <a target="_blank" href={hostApiResource}>{this.formatHost(pod.status.host)}</a></span></div>
                     <ContainerList containers={pod.spec.containers} />
                     {this.renderIcon(pod)}
+                    {this.renderProvidedServices()}
                 </div>
             </div>
         );

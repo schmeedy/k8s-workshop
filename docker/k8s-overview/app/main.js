@@ -33,7 +33,8 @@ Router.run(routes, function(Handler, state) {
 
 var pollIntervals = {
     'refreshPods': 1000,
-    'refreshNamespaces': 5000
+    'refreshNamespaces': 5000,
+    'refreshServices': 5000
 };
 
 $.each(pollIntervals, function(actionName, timeout) {

@@ -3,6 +3,7 @@ var $ = require('jquery');
 var React = require('react');
 var PodStore = require('../stores/PodStore.js');
 var NamespaceStore = require('../stores/NamespaceStore.js');
+var ServiceStore = require('../stores/ServiceStore.js');
 var Namespace = require('./Namespace.js');
 
 module.exports = React.createClass({
@@ -20,11 +21,13 @@ module.exports = React.createClass({
     componentWillMount: function () {
         PodStore.addChangeListener(this.update);
         NamespaceStore.addChangeListener(this.update);
+        ServiceStore.addChangeListener(this.update);
     },
 
     componentWillUnmount: function () {
         PodStore.removeChangeListener(this.update);
         NamespaceStore.removeChangeListener(this.update);
+        ServiceStore.removeChangeListener(this.update);
     },
 
     update: function () {
@@ -33,6 +36,7 @@ module.exports = React.createClass({
         NamespaceStore.getNamespaces().forEach(function(ns) {
             var nsCopy = $.extend(true, {}, ns);
             nsCopy.pods = [];
+            nsCopy.services = [];
             namespaces.push(nsCopy);
             namespacesByName[ns.metadata.name] = nsCopy;
         });
@@ -41,6 +45,13 @@ module.exports = React.createClass({
             var ns = namespacesByName[pod.metadata.namespace];
             if (ns) {
                 ns.pods.push(pod);
+            }
+        });
+
+        ServiceStore.getServices().forEach(function(service) {
+            var ns = namespacesByName[service.metadata.namespace];
+            if (ns) {
+                ns.services.push(service);
             }
         });
 

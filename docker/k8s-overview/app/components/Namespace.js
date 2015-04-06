@@ -12,7 +12,7 @@ module.exports = React.createClass({
         var nsApiResource = '/api/v1beta3/namespaces/' + ns.metadata.name;
         var panelBody;
         if (ns.pods.length > 0) {
-            panelBody = <PodList pods={ns.pods} key={ns.metadata.id} />;
+            panelBody = <PodList pods={ns.pods} services={ns.services} key={ns.metadata.id} />;
         } else {
             panelBody = <div className="row empty">Empty namespace (no Pods)</div>;
         }

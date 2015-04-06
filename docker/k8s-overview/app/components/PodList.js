@@ -5,7 +5,8 @@ var Pod = require('./Pod.js');
 
 module.exports = React.createClass({
     propTypes: {
-        pods: React.PropTypes.array
+        pods: React.PropTypes.array,
+        services: React.PropTypes.array
     },
 
     getInitialState: function() {
@@ -48,13 +49,28 @@ module.exports = React.createClass({
         })
     },
 
+    getProvidedServices: function(pod) {
+        return this.props.services.filter(function(service) {
+            if (!service.metadata.labels) {
+                return false;
+            }
+            for (var label in service.metadata.labels) {
+                if (service.metadata.labels[label] != pod.metadata.labels[label]) {
+                    return false;
+                }
+            }
+            return true;
+        });
+    },
+
     render: function() {
         var pods = this.state.displayedPods.length > 0 ? this.state.displayedPods : this.props.pods;
         return (
             <div className="row">
                 {pods.map(function(pod) {
-                    return <Pod key={pod.metadata.uid} pod={pod} />
-                })}
+                    var providedServices = this.getProvidedServices(pod);
+                    return <Pod key={pod.metadata.uid} pod={pod} providedServices={providedServices} />
+                }.bind(this))}
             </div>
         );
     }

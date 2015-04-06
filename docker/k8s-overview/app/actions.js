@@ -1,5 +1,5 @@
 var flux = require('flux-react');
 
 module.exports = flux.createActions([
-  'refreshPods', 'refreshNamespaces'
+  'refreshPods', 'refreshNamespaces', 'refreshServices'
 ]);
