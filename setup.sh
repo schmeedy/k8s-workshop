@@ -64,7 +64,7 @@ kubectl config set-cluster k8s-workshop --server=http://localhost:8001 --api-ver
 kubectl config set-context default --cluster=k8s-workshop --namespace=default
 kubectl config set-context $NS --cluster=k8s-workshop --namespace=$NS
 kubectl config use-context $NS
-mkdir -p ~/.kubes
+mkdir -p ~/.kube
 mv .kubeconfig ~/.kube/
 echo
 echo "kubectl config:"
