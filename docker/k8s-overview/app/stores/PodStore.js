@@ -14,6 +14,9 @@ module.exports = flux.createStore({
         $.get('/api/v1beta3/pods', function (pods) {
             this.pods = pods.items;
             this.pods.forEach(function(pod) {
+                if (!pod.metadata.labels) {
+                    pod.metadata.labels = {};
+                }
                 var iconPath = pod.metadata.labels.icon;
                 if (iconPath) {
                     this.assignIcon(pod, iconPath);
