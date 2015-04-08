@@ -1,0 +1,40 @@
+{
+    "apiVersion": "v1beta3",
+    "kind": "ReplicationController",
+    "metadata": {
+        "name": "serve-image-0.1.0",
+        "labels": {
+            "component": "serve-image"
+        }
+    },
+    "spec": {
+        "replicas": 2,
+        "selector": {
+            "component": "serve-image",
+            "version": "0.1.0"
+        },
+        "template": {
+            "metadata": {
+                "labels": {
+                    "component": "serve-image",
+                    "version": "0.1.0",
+                    "icon": "image.png"
+                }
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "name": "nginx",
+                        "image": "schmeedy/serve-image:0.1.0",
+                        "ports": [
+                            {
+                                "name": "nginx",
+                                "containerPort": 80
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

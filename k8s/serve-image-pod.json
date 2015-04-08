@@ -1,0 +1,25 @@
+{
+    "apiVersion": "v1beta3",
+    "kind": "Pod",
+    "metadata": {
+        "name": "serve-image",
+        "labels": {
+            "component": "serve-image",
+            "icon": "image.png"
+        },
+    },
+    "spec": {
+        "containers": [
+            {
+                "name": "nginx",
+                "image": "schmeedy/serve-image:0.1.0",
+                "ports": [
+                    {
+                        "name": "nginx",
+                        "containerPort": 80
+                    }
+                ]
+            }
+        ]
+    }
+}
