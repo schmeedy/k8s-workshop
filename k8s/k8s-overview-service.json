@@ -1,0 +1,14 @@
+{
+  "id": "k8s-overview",
+  "kind": "Service",
+  "apiVersion": "v1beta1",
+  "port": 80,
+  "containerPort": "node",
+  "selector": {
+    "component": "k8s-overview"
+  },
+  "labels": {
+    "component": "k8s-overview"
+  },
+  "createExternalLoadBalancer": true
+}

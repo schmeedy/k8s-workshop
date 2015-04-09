@@ -1,0 +1,26 @@
+{
+  "id": "k8s-overview-latest",
+  "kind": "ReplicationController",
+  "apiVersion": "v1beta1",
+  "desiredState": {
+    "replicas": 1,
+    "replicaSelector": { "component": "k8s-overview", "version": "latest" },
+    "podTemplate": {
+      "desiredState": {
+         "manifest": {
+           "version": "v1beta1",
+           "id": "k8s-overview",
+           "containers": [{
+             "name": "node",
+             "image": "schmeedy/k8s-overview:latest",
+             "ports": [{ "name": "node", "containerPort": 80 }]
+           }]
+         }
+       },
+       "labels": {
+         "component": "k8s-overview",
+         "version": "latest"
+       }
+      }},
+  "labels": { "component": "k8s-overview" }
+}
