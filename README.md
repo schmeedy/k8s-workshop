@@ -28,6 +28,6 @@ Uncover the secret answer and win yourself some glory! The setup is simple - the
     }]
     ...
 ```
+    * the frontend container exposes web UI on container port ``8080`` 
 * ideally, containers (pods) can be wired together via a service (remember you can access services in pods through their DNS name: ``${service}.${namespace}.kubernetes.local``)
 * it's also a good idea to run pods (even with one replica) under supervised by a replication controller if you don't want them to suddenly dissapear (f.ex. in the event of node failure)
-* 
