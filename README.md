@@ -5,8 +5,11 @@
 # Setup instructions
 1. clone this repo
 2. run ``./setup.sh`` - it downloads and configures ``kubectl`` (the command-line utility for Kubernetes)
-3. the setup script will also print a command to open a tunnel to kubernetes API @ our cluster - run it in a separate terminal & keep the tunnel open
-4. you should be ready to rock - to test things out, try running ``kubectl get pods`` - you shouln't see any error message and get empty listing of pods (what is this "pod" anyways? don't worry, you'll learn that momentarily)
+    * the script needs admin rights, so you'll have to provide your password
+    * it uses ``wget`` and as I just learned, it's not standard for Mac - you can install it through Homebrew: ``brew install wget``
+    * it includes a mini-game which is an ultimate test of your skills (find yourself in the list)
+3. the setup script will also print a **command to tunnel kubernetes API** @ our cluster - **run it in a separate terminal** & keep the tunnel open
+4. you should be ready to rock - to test things out, try running ``kubectl get pods`` (from your local machine) - you shouln't see any error message and get empty listing of pods (what is this "pod" anyways? don't worry, you'll learn that momentarily)
 
 # Assignment
 Uncover the secret answer and win yourself some glory! The setup is simple - there's a frontend container that connects to backend container to recover the answer and present it tou you :) Let's talk specifics:
